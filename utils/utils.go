@@ -50,3 +50,9 @@ func GetFiles(root string, ext string) []string {
 	})
 	return a
 }
+
+func DeleteFile(path string) {
+	if FileExists(path) {
+		os.Remove(path)
+	}
+}
