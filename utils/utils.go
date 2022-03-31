@@ -56,3 +56,9 @@ func DeleteFile(path string) {
 		os.Remove(path)
 	}
 }
+
+func DeleteFiles(files ...string) {
+	for _, fp := range files {
+		DeleteFile(fp)
+	}
+}
