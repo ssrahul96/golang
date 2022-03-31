@@ -6,6 +6,8 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+
+	"gopkg.in/yaml.v3"
 )
 
 func GetCurrentPath() string {
@@ -17,9 +19,14 @@ func GetCurrentPath() string {
 	return pwd
 }
 
-func FormatJson(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "\t")
+func FormatJson(class interface{}) string {
+	s, _ := json.MarshalIndent(class, "", "\t")
 	return string(s)
+}
+
+func FormatYaml(class interface{}) string {
+	yamlData, _ := yaml.Marshal(&class)
+	return string(yamlData)
 }
 
 func FileExists(configPath string) bool {
