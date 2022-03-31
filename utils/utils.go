@@ -17,7 +17,7 @@ func GetCurrentPath() string {
 	return pwd
 }
 
-func PrettyPrint(i interface{}) string {
+func FormatJson(i interface{}) string {
 	s, _ := json.MarshalIndent(i, "", "\t")
 	return string(s)
 }
