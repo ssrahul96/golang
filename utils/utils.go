@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"io/fs"
@@ -83,4 +84,25 @@ func IsObjectEmpty(object interface{}) bool {
 		}
 	}
 	return false
+}
+
+func ReadFile(path string) []string {
+
+	file, err := os.Open(path)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	scanner := bufio.NewScanner(file)
+
+	scanner.Split(bufio.ScanLines)
+	var text []string
+
+	for scanner.Scan() {
+		text = append(text, scanner.Text())
+	}
+	file.Close()
+
+	return text
 }
