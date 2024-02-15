@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"reflect"
 
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 func GetCurrentPath() string {
@@ -66,7 +66,7 @@ func DeleteFiles(files ...string) {
 }
 
 func IsObjectEmpty(object interface{}) bool {
-	//First check normal definitions of empty
+	// First check normal definitions of empty
 	if object == nil {
 		return true
 	} else if object == "" {
@@ -75,7 +75,7 @@ func IsObjectEmpty(object interface{}) bool {
 		return true
 	}
 
-	//Then see if it's a struct
+	// Then see if it's a struct
 	if reflect.ValueOf(object).Kind() == reflect.Struct {
 		// and create an empty copy of the struct object to compare against
 		empty := reflect.New(reflect.TypeOf(object)).Elem().Interface()
@@ -87,9 +87,7 @@ func IsObjectEmpty(object interface{}) bool {
 }
 
 func ReadFile(path string) []string {
-
 	file, err := os.Open(path)
-
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
